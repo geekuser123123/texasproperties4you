@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors — exact hex values from brand spec */
+  --color-brand-green: #234D3C;
+  --color-brand-green-dark: #17372B;
+  --color-brand-gold: #C49A57;
+  --color-brand-cream: #F6F2E9;
+  --color-brand-sand: #E5D8C4;
+  --color-brand-charcoal: #242424;
+  --color-brand-gray: #6B6B6B;
+  --color-brand-white: #FFFFFF;
+
+  --color-status-available: #2E7D4F;
+  --color-status-pending: #B97800;
+  --color-status-sold: #9B3535;
+
+  --font-heading: var(--font-poppins), Arial, sans-serif;
+  --font-body: var(--font-inter), Arial, sans-serif;
+
+  --radius-brand-sm: 6px;
+  --radius-brand-lg: 10px;
+}
+
+/*
+ * Wrapped in @layer base so these participate in Tailwind's cascade layers —
+ * unlayered CSS always wins over layered utilities regardless of specificity,
+ * which would otherwise make text-white etc. unable to override h1-h6 here.
+ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-brand-cream);
+    color: var(--color-brand-charcoal);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-brand-charcoal);
+  }
+
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+::selection {
+  background: var(--color-brand-gold);
+  color: var(--color-brand-green-dark);
+}
+
+/* Visible focus ring for keyboard accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-brand-gold);
+  outline-offset: 2px;
+}
+
+.container-brand {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* Reserve space at bottom of mobile viewport for sticky action bar */
+.mobile-sticky-offset {
+  padding-bottom: 76px;
+}
+
+@media (min-width: 768px) {
+  .mobile-sticky-offset {
+    padding-bottom: 0;
+  }
+}

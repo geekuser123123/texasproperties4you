@@ -1,0 +1,12 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+await page.goto('http://localhost:3000/', { waitUntil: 'networkidle' });
+await page.screenshot({ path: 'scripts/tmp/mobile-hero.png' });
+await page.locator('text=Owner Financing May Be Available').scrollIntoViewIfNeeded();
+await page.screenshot({ path: 'scripts/tmp/mobile-financing.png' });
+await page.goto('http://localhost:3000/properties/3-5-acres-near-bryan-brazos-county', { waitUntil: 'networkidle' });
+await page.screenshot({ path: 'scripts/tmp/mobile-property-top.png' });
+await page.locator('text=Estimate Your Payment').scrollIntoViewIfNeeded();
+await page.screenshot({ path: 'scripts/tmp/mobile-calculator.png' });
+await browser.close();
